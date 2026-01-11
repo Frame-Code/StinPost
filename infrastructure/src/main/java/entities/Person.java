@@ -1,6 +1,5 @@
 package entities;
 
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -11,7 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
 
 @Entity
@@ -20,7 +18,7 @@ import java.time.Period;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Person {
+public class Person extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,15 +30,15 @@ public class Person {
     @Column(name = "nombre", nullable = false, length = 50)
     private String name;
 
-    @NotBlank(message = "El numero de cedula es obligatorio")
+    @NotBlank(message = "El numero de identificación es obligatorio")
     @Size(min = 2, max = 10, message = "La cedula debe tener 10 caracteres")
     @Column(name = "ci", nullable = false, length = 10)
     private String dni;
 
     @NotBlank(message = "El apellido es obligatorio")
     @Size(min = 2, max = 50, message = "El apellido debe tener entre 2 y 50 caracteres")
-    @Column(nullable = false, length = 50)
-    private String lastname;
+    @Column(nullable = false, length = 50, name = "lastname")
+    private String lastName;
 
     @NotBlank(message = "El email es obligatorio")
     @Email(message = "El formato del email es inválido")
@@ -55,14 +53,12 @@ public class Person {
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
-    public String getFullName() {
-        return name + " " + lastname;
+    public String getFullNames() {
+        return name + " " + lastName;
     }
 
     public Integer getAge( LocalDate birthdate ){
         if (this.birthDate == null) return 0;
         return Period.between(this.birthDate,LocalDate.now()).getYears();
     }
-
-
 }
