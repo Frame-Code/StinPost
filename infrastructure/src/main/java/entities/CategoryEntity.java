@@ -31,6 +31,6 @@ public class CategoryEntity {
     @OneToMany (mappedBy = "category")
     private List<PostEntity> posts;
 
-    
+
 
 }
