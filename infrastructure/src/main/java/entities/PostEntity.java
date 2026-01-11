@@ -65,7 +65,21 @@ public class PostEntity {
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<TagEntity> tags;
 
+    @OneToMany(
+            mappedBy = "post",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<CommentEntity> comments;
 
+    public void addComment(CommentEntity comment) {
+        comments.add(comment);
+        comment.setPost(this);
+    }
 
+    public void removeComment(CommentEntity comment) {
+        comments.remove(comment);
+        comment.setActive(false);
+    }
 
 }

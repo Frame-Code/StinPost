@@ -31,9 +31,6 @@ public class UsersEntity extends PersonEntity {
     @Size(min = 1 , max = 255)
     private String bio;
 
-    @Column(name = "avatar_url")
-    private String avatarUrl;
-
     @NotNull(message = "El usuario debe tener un rol")
     @Enumerated(EnumType.STRING)
     private Roles role;
@@ -41,22 +38,8 @@ public class UsersEntity extends PersonEntity {
     @OneToMany(mappedBy = "author" , cascade = CascadeType.ALL)
     private List<PostEntity> posts;
 
-    @Column(name = "creation_date")
-    private LocalDateTime creationDate;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "image_id", unique = true,  nullable = false)
+    private ImageEntity avatar;
 
-    @Column(name = "update_date")
-    private LocalDateTime updateDate;
-
-    @Column(nullable = false)
-    private Boolean active = true;
-
-    @PrePersist
-    public void prePersist() {
-        this.creationDate = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.updateDate = LocalDateTime.now();
-    }
 }
