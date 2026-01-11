@@ -11,7 +11,6 @@ import ValueObjects.Tag.TagId;
 import ValueObjects.User.UserId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,10 +70,10 @@ public class Post {
         comments.add(comment);
     }
 
-    public void removeComment(Comment category) {
-        if (category == null)
+    public void removeComment(Comment comment) {
+        if (comment == null)
             throw new IllegalArgumentException("No se puede eliminar una categoría nula");
-        categories.remove(category);
+        comments.remove(comment);
 
     }
 
