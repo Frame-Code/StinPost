@@ -1,13 +1,15 @@
-package enums;
+package roles;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum roles {
-    ADMINISTRADOR("Administrador"),
-    SUBSCRIBER ("Subscriber");
+public enum StatePost {
+    PUBLISHED("Published"),
+    PENDING("Pending");
 
     private final String description;
+
 }
