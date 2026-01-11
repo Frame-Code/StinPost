@@ -1,4 +1,4 @@
-package roles;
+package Enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

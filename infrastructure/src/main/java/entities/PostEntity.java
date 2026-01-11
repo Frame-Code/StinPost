@@ -8,11 +8,9 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import roles.StatePost;
+import Enums.StatePost;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "post")
@@ -47,16 +45,19 @@ public class PostEntity {
     @Enumerated(EnumType.STRING)
     private StatePost status;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "reaction_id")
+    private List<ReactionEntity> reactions;
+
     @NotNull(message = "El post debe tener un autor")
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private  UsersEntity author;
 
     @NotNull(message = "El post debe tener una categoria")
-    @ManyToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    private CategoryEntity category;
-
+    private List<CategoryEntity> categories;
 
     @ManyToMany
     @JoinTable(
@@ -81,5 +82,15 @@ public class PostEntity {
         comments.remove(comment);
         comment.setActive(false);
     }
+
+    public void addTask(TagEntity tag) {
+        tags.add(tag);
+
+    }
+
+    public void removeTask(TagEntity tag) {
+        tags.remove(tag);
+    }
+
 
 }
