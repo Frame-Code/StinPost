@@ -8,9 +8,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import roles.Roles;
+import Enums.Roles;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity

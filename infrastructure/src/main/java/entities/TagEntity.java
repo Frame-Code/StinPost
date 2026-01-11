@@ -23,6 +23,8 @@ public class TagEntity {
     @Size(max=50, message = "El nombre de la etiqueta no puede exceder los 50 caracteres")
     @Column(unique = true, nullable = false)
     private String name;
+
+
 }
 
 
