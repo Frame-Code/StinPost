@@ -3,5 +3,5 @@ package com.stin.dtos;
 import lombok.Data;
 
 @Data
-public class PersonDTO {
+public class Person {
 }

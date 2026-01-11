@@ -1,6 +1,7 @@
 package entities;
 
 
+import exceptions.BussinesException;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -11,7 +12,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Period;
 
 @Entity
@@ -20,7 +20,7 @@ import java.time.Period;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Person {
+public class PersonEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,6 +52,7 @@ public class Person {
     @Column(name = "cell_phone_number", nullable = false, length = 20)
     private String cellPhone;
 
+    @NotBlank(message = "La fecha de nacimiento no puede estar vacía")
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
@@ -59,8 +60,8 @@ public class Person {
         return name + " " + lastname;
     }
 
-    public Integer getAge( LocalDate birthdate ){
-        if (this.birthDate == null) return 0;
+    public Integer getAge(){
+        if (this.birthDate == null)  throw new BussinesException("Error: Fecha de nacimiento no puede ser vacía");
         return Period.between(this.birthDate,LocalDate.now()).getYears();
     }
 
