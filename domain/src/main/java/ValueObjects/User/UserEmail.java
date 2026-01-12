@@ -1,6 +1,6 @@
 package ValueObjects.User;
 
-import exceptions.BussinesException;
+import exceptions.DomainException;
 
 import java.util.regex.Pattern;
 
@@ -13,7 +13,7 @@ public record UserEmail(String value) {
             throw new IllegalArgumentException("El email no puede estar vacío");
         }
         if (!EMAIL_PATTERN.matcher(value).matches()) {
-            throw new BussinesException("El formato del email es inválido");
+            throw new DomainException("El formato del email es inválido");
         }
     }
 }

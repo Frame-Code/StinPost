@@ -5,14 +5,16 @@ import ValueObjects.Category.CategoryId;
 import ValueObjects.Category.CategoryName;
 import ValueObjects.Post.PostId;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Category {
-
+    @EqualsAndHashCode.Include
     private final CategoryId categoryId;
     private final CategoryName categoryName;
     private final List<Post> postList= new ArrayList<>();

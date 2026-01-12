@@ -1,7 +1,7 @@
 package entities;
 
 
-import exceptions.BussinesException;
+import exceptions.DomainException;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -60,7 +60,7 @@ public class PersonEntity extends BaseEntity {
     }
 
     public Integer getAge(){
-        if (this.birthDate == null)  throw new BussinesException("Error: Fecha de nacimiento no puede ser vacía");
+        if (this.birthDate == null)  throw new DomainException("Error: Fecha de nacimiento no puede ser vacía");
         return Period.between(this.birthDate,LocalDate.now()).getYears();
     }
 }

@@ -1,6 +1,6 @@
 package ValueObjects.Post;
 
-import exceptions.BussinesException;
+import exceptions.DomainException;
 
 public record PostTitle(String title) {
     public PostTitle {
@@ -8,7 +8,7 @@ public record PostTitle(String title) {
             throw new IllegalArgumentException("El titulo del post no puede estar vacío");
         }
         if (title.length() < 2 || title.length() > 200){
-            throw new BussinesException("El post debe tener entre 2 y 200 caracteres");
+            throw new DomainException("El post debe tener entre 2 y 200 caracteres");
         }
     }
 }

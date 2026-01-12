@@ -6,14 +6,16 @@ import ValueObjects.Comment.CommentId;
 import ValueObjects.Post.PostId;
 import ValueObjects.User.UserId;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
 @Getter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Comment {
-
+    @EqualsAndHashCode.Include
     private final CommentId commentId;
     private final CommentContent commentContent;
     private final List<Post> posts = new ArrayList<>();

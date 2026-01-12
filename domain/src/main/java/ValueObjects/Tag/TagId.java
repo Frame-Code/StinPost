@@ -1,7 +1,5 @@
 package ValueObjects.Tag;
 
-import exceptions.BussinesException;
-
 public record TagId(Long id) {
     public TagId {
         if (id == null || id <= 0) {

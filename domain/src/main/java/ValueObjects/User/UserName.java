@@ -1,6 +1,6 @@
 package ValueObjects.User;
 
-import exceptions.BussinesException;
+import exceptions.DomainException;
 
 public record UserName(String value) {
     public UserName {
@@ -8,7 +8,7 @@ public record UserName(String value) {
             throw new IllegalArgumentException("El nombre/apellido no puede estar vacío");
         }
         if (value.length() < 2 || value.length() > 50) {
-            throw new BussinesException("El nombre/apellido debe tener entre 2 y 50 caracteres");
+            throw new DomainException("El nombre/apellido debe tener entre 2 y 50 caracteres");
         }
     }
 }

@@ -1,11 +1,11 @@
 package ValueObjects.User;
 
-import exceptions.BussinesException;
+import exceptions.DomainException;
 
 public record UserBio(String value) {
     public UserBio {
         if (value.length() < 2 || value.length() > 255) {
-            throw new BussinesException("La biografía no puede exceder los 255 caracteres");
+            throw new DomainException("La biografía no puede exceder los 255 caracteres");
         }
 
     }

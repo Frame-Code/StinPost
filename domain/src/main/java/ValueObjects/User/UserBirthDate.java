@@ -1,6 +1,6 @@
 package ValueObjects.User;
 
-import exceptions.BussinesException;
+import exceptions.DomainException;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -11,7 +11,7 @@ public record UserBirthDate(LocalDate value) {
             throw new IllegalArgumentException("La fecha de nacimiento es obligatoria");
         }
         if (value.isAfter(LocalDate.now())) {
-            throw new BussinesException("La fecha de nacimiento no puede estar en el futuro");
+            throw new DomainException("La fecha de nacimiento no puede estar en el futuro");
         }
     }
 
