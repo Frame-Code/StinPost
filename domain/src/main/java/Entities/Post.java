@@ -11,7 +11,6 @@ import ValueObjects.Reaction.ReactionId;
 import ValueObjects.Tag.TagId;
 import ValueObjects.User.UserId;
 import exceptions.DomainException;
-import lombok.Getter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
