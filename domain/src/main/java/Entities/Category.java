@@ -9,12 +9,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @AllArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Category {
-    @EqualsAndHashCode.Include
     private final CategoryId categoryId;
     private final CategoryName categoryName;
     private final List<Post> postList= new ArrayList<>();
@@ -34,5 +33,15 @@ public class Category {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Category category = (Category) o;
+        return Objects.equals(categoryId, category.categoryId);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(categoryId);
+    }
 }
