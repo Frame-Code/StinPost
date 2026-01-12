@@ -2,6 +2,8 @@ package Entities;
 
 import Entities.Util.Util;
 import Enums.StatePost;
+import ValueObjects.Category.CategoryId;
+import ValueObjects.Comment.CommentId;
 import ValueObjects.Post.PostContent;
 import ValueObjects.Post.PostId;
 import ValueObjects.Post.PostSummary;
@@ -53,27 +55,27 @@ public class Post {
     }
 
     public void addCategory(Category category) {
-        if(category == null)
-            throw new IllegalArgumentException("No se puede agregar una categoría nula");
-        categories.add(category);
+        Util.add(categories,category,"No se puede agregar una categoría nula");
     }
 
-    public void removeCategory(Category category) {
-        if (category == null)
-            throw new IllegalArgumentException("No se puede eliminar una categoría nula");
-        categories.remove(category);
+    public void removeCategory(CategoryId categoryId) {
+        Util.remove(categories, categoryId, "No se puede eliminar una categoria asociada a un post", () ->
+                categories.stream()
+                        .filter(c -> c.getCategoryId().equals(categoryId))
+                        .findFirst()
+                        .orElse(null));
     }
 
     public void addComment(Comment comment) {
-        if(comment == null)
-            throw new IllegalArgumentException("No se puede agregar un comentario nulo");
-        comments.add(comment);
+      Util.add(comments,comment,"No se puede agregar un comentario nulo");
     }
 
-    public void removeComment(Comment comment) {
-        if (comment == null)
-            throw new IllegalArgumentException("No se puede eliminar una categoría nula");
-        comments.remove(comment);
+    public void removeComment(CommentId commentId) {
+        Util.remove(comments, commentId, "No se puede eliminar una comentario nulo , ¡pendejo!", () ->
+                comments.stream()
+                        .filter(c -> c.getCommentId().equals(commentId))
+                        .findFirst()
+                        .orElse(null));
 
     }
 

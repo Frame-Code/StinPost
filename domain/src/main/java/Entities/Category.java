@@ -1,7 +1,6 @@
 package Entities;
 
 import Entities.Util.Util;
-import ValueObjects.Category.CategoryDescription;
 import ValueObjects.Category.CategoryId;
 import ValueObjects.Category.CategoryName;
 import ValueObjects.Post.PostId;
@@ -16,7 +15,6 @@ public class Category {
 
     private final CategoryId categoryId;
     private final CategoryName categoryName;
-    private final CategoryDescription categoryDescription;
     private final List<Post> postList= new ArrayList<>();
 
 
