@@ -17,17 +17,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class Post {
-    @Getter
     private final PostId postId;
-    @Getter
     private final PostTitle postTitle;
-    @Getter
     private final PostContent postContent;
-    @Getter
     private final PostSummary summary;
-    @Getter
     private final UserId userId;
-    @Getter
     private StatePost state;
     private final List<Reaction> reactions;
     private final List<Category> categories;
@@ -165,5 +159,29 @@ public class Post {
 
     public List<Comment> getComments() {
         return Collections.unmodifiableList(comments);
+    }
+
+    public PostId getPostId() {
+        return postId;
+    }
+
+    public PostTitle getPostTitle() {
+        return postTitle;
+    }
+
+    public PostContent getPostContent() {
+        return postContent;
+    }
+
+    public PostSummary getSummary() {
+        return summary;
+    }
+
+    public UserId getUserId() {
+        return userId;
+    }
+
+    public StatePost getState() {
+        return state;
     }
 }
