@@ -21,10 +21,12 @@ public class UsersEntity extends PersonEntity {
 
     @NotEmpty
     @Size(min = 4, max = 16)
+    @Column(nullable = false, length = 16)
     private String username;
 
     @NotEmpty
-    @Size(min = 8, max = 16)
+    @Size(min = 4, max = 72)
+    @Column(nullable = false, length = 72)
     private String password;
 
     @Size(min = 1 , max = 255)
