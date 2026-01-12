@@ -1,6 +1,6 @@
 package ValueObjects.Tag;
 
-import exceptions.BussinesException;
+import exceptions.DomainException;
 
 public record TagName(String name) {
     public TagName {
@@ -9,7 +9,7 @@ public record TagName(String name) {
         }
 
         if (name.length() > 50){
-            throw new BussinesException("El nombre del tag no puede exceder los 50 caracteres");
+            throw new DomainException("El nombre del tag no puede exceder los 50 caracteres");
         }
     }
 }

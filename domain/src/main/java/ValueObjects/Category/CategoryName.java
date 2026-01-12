@@ -1,6 +1,6 @@
 package ValueObjects.Category;
 
-import exceptions.BussinesException;
+import exceptions.DomainException;
 
 public record CategoryName(String name) {
     public CategoryName{
@@ -10,7 +10,7 @@ public record CategoryName(String name) {
         }
 
         if (name.length() > 50){
-            throw new BussinesException("El nombre de la categoría no puede exceder los 50 caracteres");
+            throw new DomainException("El nombre de la categoría no puede exceder los 50 caracteres");
         }
     }
 }

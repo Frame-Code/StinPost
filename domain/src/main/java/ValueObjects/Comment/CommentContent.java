@@ -1,6 +1,6 @@
 package ValueObjects.Comment;
 
-import exceptions.BussinesException;
+import exceptions.DomainException;
 
 public record CommentContent(String content) {
     public CommentContent {
@@ -9,7 +9,7 @@ public record CommentContent(String content) {
         }
 
         if (content.length() > 2000){
-            throw new BussinesException("El contenido del comentario no puede exceder los 2000 caracteres");
+            throw new DomainException("El contenido del comentario no puede exceder los 2000 caracteres");
         }
         }
     }

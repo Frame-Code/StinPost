@@ -1,6 +1,6 @@
 package ValueObjects.User;
 
-import exceptions.BussinesException;
+import exceptions.DomainException;
 
 import java.util.regex.Pattern;
 
@@ -12,7 +12,7 @@ public record UserPhone(String value) {
             throw new IllegalArgumentException("El teléfono no puede estar vacío");
         }
         if (!PHONE_PATTERN.matcher(value).matches()) {
-            throw new BussinesException("El teléfono debe contener entre 8 y 15 dígitos");
+            throw new DomainException("El teléfono debe contener entre 8 y 15 dígitos");
         }
     }
 }

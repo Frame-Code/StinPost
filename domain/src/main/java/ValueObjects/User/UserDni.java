@@ -1,6 +1,6 @@
 package ValueObjects.User;
 
-import exceptions.BussinesException;
+import exceptions.DomainException;
 
 public record UserDni(String value) {
     public UserDni {
@@ -8,10 +8,10 @@ public record UserDni(String value) {
             throw new IllegalArgumentException("El DNI no puede estar vacío");
         }
         if (value.length() != 10) {
-            throw new BussinesException("El DNI debe tener exactamente 10 caracteres");
+            throw new DomainException("El DNI debe tener exactamente 10 caracteres");
         }
         if (!value.matches("\\d+")) {
-            throw new BussinesException("El DNI debe contener solo números");
+            throw new DomainException("El DNI debe contener solo números");
         }
     }
 }
