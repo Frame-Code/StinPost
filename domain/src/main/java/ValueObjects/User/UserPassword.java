@@ -7,8 +7,8 @@ public record UserPassword(String value) {
         if (value == null || value.isBlank()) {
             throw new IllegalArgumentException("La contraseña no puede estar vacía");
         }
-        if (value.length() < 8 || value.length() > 16) {
-            throw new DomainException("La contraseña debe tener entre 8 y 16 caracteres");
+        if (value.length() < 8 || value.length() > 72) {
+            throw new DomainException("La contraseña debe tener entre 8 y 72 caracteres");
         }
     }
 }

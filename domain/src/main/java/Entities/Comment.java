@@ -1,50 +1,67 @@
 package Entities;
 
-import Entities.Util.Util;
 import ValueObjects.Comment.CommentContent;
 import ValueObjects.Comment.CommentId;
-import ValueObjects.Post.PostId;
-import ValueObjects.User.UserId;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import java.util.ArrayList;
-import java.util.List;
 
-@AllArgsConstructor
-@Getter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+import java.util.Objects;
+
 public class Comment {
-    @EqualsAndHashCode.Include
     private final CommentId commentId;
-    private final CommentContent commentContent;
-    private final List<Post> posts = new ArrayList<>();
-    private final List<User> users = new ArrayList<>();
+    private CommentContent commentContent;
+    private final Post post;
+    private final User user;
 
+    private Comment(CommentId commentId, CommentContent commentContent, Post post, User user) {
+        if(commentId == null) throw new IllegalArgumentException("El id del comentario no puede ser nulo");
+        if(commentContent == null) throw new IllegalArgumentException("El contenido del comentario no puede ser nulo");
+        if(post == null) throw new IllegalArgumentException("El post del comentario no puede ser nulo");
+        if(user == null) throw new IllegalArgumentException("El usuario del comentario no puede ser nulo");
 
-    public void addCommentToPost(Post post){
-        Util.add(posts,post,"No se puede agregar un comentario a un post nulo");
+        this.commentId = commentId;
+        this.commentContent = commentContent;
+        this.post = post;
+        this.user = user;
     }
 
-    public void addComment(User user){
-        Util.add(users,user,"No se puede agregar un comentario sin un autor");
+    public void editContent(CommentContent commentContent) {
+        if(commentContent == null)
+            throw new IllegalArgumentException("El contenido del comentario no puede ser nulo");
+        this.commentContent = commentContent;
     }
 
-    public void removeCommentToPost(PostId postId){
-        Util.remove(posts, postId, "No se puede eliminar un comentario de un post nulo", () ->
-                posts.stream()
-                        .filter(p -> p.getPostId().equals(postId))
-                        .findFirst().
-                        orElse(null));
+    public static Comment create(CommentId commentId, CommentContent commentContent, Post post, User user) {
+        return new Comment(commentId, commentContent, post, user);
     }
 
-    public void removeCommentByUser(UserId userId){
-        Util.remove(users, userId, "No se puede eliminar un comentario sin autor", () ->
-                users.stream()
-                        .filter(u-> u.getUserId().equals(userId))
-                        .findFirst().
-                        orElse(null));
-
+    public static Comment restore(CommentId commentId, CommentContent commentContent, Post post, User user) {
+        return new Comment(commentId, commentContent, post, user);
     }
 
+    public CommentId getCommentId() {
+        return commentId;
+    }
+
+    public CommentContent getCommentContent() {
+        return commentContent;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Comment comment = (Comment) o;
+        return Objects.equals(commentId, comment.commentId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(commentId);
+    }
 }

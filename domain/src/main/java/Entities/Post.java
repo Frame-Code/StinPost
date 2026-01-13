@@ -14,6 +14,7 @@ import exceptions.DomainException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Post {
     private final PostId postId;
@@ -182,5 +183,17 @@ public class Post {
 
     public StatePost getState() {
         return state;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return Objects.equals(postId, post.postId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(postId);
     }
 }
