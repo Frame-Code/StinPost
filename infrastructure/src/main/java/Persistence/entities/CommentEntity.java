@@ -1,4 +1,4 @@
-package entities;
+package Persistence.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -29,7 +29,7 @@ public class CommentEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private UsersEntity user;
+    private UserEntity user;
 
 
 }

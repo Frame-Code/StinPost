@@ -1,4 +1,4 @@
-package entities;
+package Persistence.entities;
 
 
 import Enums.TypeReaction;
@@ -27,6 +27,6 @@ public class ReactionEntity {
     @OneToOne
     @NotNull(message = "El user es obligatorio")
     @JoinColumn(nullable = false, name = "user_id")
-    private UsersEntity user;
+    private UserEntity user;
 
 }

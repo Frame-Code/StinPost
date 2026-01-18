@@ -1,4 +1,4 @@
-package entities;
+package Persistence.entities;
 
 
 import jakarta.persistence.*;
@@ -17,7 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UsersEntity extends PersonEntity {
+public class UserEntity extends PersonEntity {
 
     @NotEmpty
     @Size(min = 4, max = 16)
