@@ -1,4 +1,4 @@
-package entities;
+package Persistence.entities;
 
 
 import jakarta.persistence.*;
@@ -52,7 +52,7 @@ public class PostEntity {
     @NotNull(message = "El post debe tener un autor")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private UsersEntity author;
+    private UserEntity author;
 
     @NotNull(message = "El post debe tener una categoria")
     @OneToMany(fetch = FetchType.LAZY)
